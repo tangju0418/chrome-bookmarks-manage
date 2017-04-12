@@ -1,0 +1,52 @@
+[
+  {
+    "locationName": "电视",
+    "name": "TV",
+    "typeId": "1"
+  },
+  {
+    "locationName": "空调",
+    "name": "AC",
+    "typeId": "2"
+  },
+  {
+    "locationName": "机顶盒",
+    "name": "SETTOP",
+    "typeId": "3"
+  },
+  {
+    "locationName": "扩大机",
+    "name": "AMP",
+    "typeId": "4"
+  },
+  {
+    "locationName": "DVD",
+    "name": "DVD",
+    "typeId": "5"
+  },
+  {
+    "locationName": "MP3",
+    "name": "MP3",
+    "typeId": "6"
+  },
+  {
+    "locationName": "游戏机",
+    "name": "GAME",
+    "typeId": "7"
+  },
+  {
+    "locationName": "风扇",
+    "name": "FAN",
+    "typeId": "8"
+  },
+  {
+    "locationName": "投影仪",
+    "name": "PJ",
+    "typeId": "9"
+  },
+  {
+    "locationName": "机器人",
+    "name": "ROBOT",
+    "typeId": "10"
+  }
+]

@@ -1,0 +1,12 @@
+bower_components
+node_modules
+android/build
+android/app/build
+*.iws
+Pods
+*.log
+Thumbs.db
+/build
+app/env/local.js
+unpackage
+__pack

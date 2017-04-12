@@ -3,19 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>书签管理</title>
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="cache-control" content="no-cache">
-  <meta http-equiv="expires" content="0">
   <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_ogjb6wkhjghf47vi.css">
   <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.publicPath %>modules/weui/weui.min.css">
   <!-- <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.publicPath %>modules/font/iconfont.css"> -->
   <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
-  <% if (htmlWebpackPlugin.options.isDevelopment){ %>
-   <script type="text/javascript" src="<%= htmlWebpackPlugin.options.publicPath %>modules/vconsole.min.js"></script>
-  <% } %>
 </head>
-<body ontouchstart>
+<body>
   <div id="app"></div>
   <script type="text/javascript" src="<%= htmlWebpackPlugin.options.publicPath %>modules/zepto.min.js"></script>
   <script type="text/javascript" src="<%= htmlWebpackPlugin.options.publicPath %>modules/core.min.js"></script>

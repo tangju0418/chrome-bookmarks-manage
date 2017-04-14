@@ -3,11 +3,19 @@
 
     <ul v-for="info in information">
      <!--  {{info|json}} -->
-      <div v-if="!isEmpty(info.children)">
-        <p >{{info.title}}</p>
-        <bookmark :information="info.children"></bookmark>
+      <div v-if="isEmpty(info.url)">
+        <p class="underline">{{info.title}}
+          <a class="weui-btn weui-btn_plain-primary wran">删除</a>
+          <a class="weui-btn weui-btn_plain-primary">修改</a>
+          <a class="weui-btn weui-btn weui-btn_plain-default">添加</a>
+        </p>
+
+        <bookmark v-if="!isEmpty(info.children)" :information="info.children"></bookmark>
       </div>
-      <li v-if="isEmpty(info.children)">{{info.title}}</li>
+      <li v-if="!isEmpty(info.url)">{{info.title}}
+        <a class="weui-btn weui-btn_plain-primary wran">删除</a>
+        <a class="weui-btn weui-btn_plain-primary">修改</a>
+      </li>
 
     </ul>
 
@@ -65,20 +73,20 @@ export default {
 <style lang="stylus" scoped>
   @import "../pages/styl/publics";
 
-
   .weui-btn
     width 100px
     font-size 14px
     float right
     margin-left 10px
+    height 30px
+    line-height 30px
+    margin-top 5px
   .wran
     border 1px solid #E64340
     color #E64340
     &:active
       border 1px solid #e48987
       color #e48987
-  .weui-btn+.weui-btn
-    margin-top 0
 
   .weui-form-preview__hd
     background-color #f3f3f3
@@ -94,9 +102,10 @@ export default {
       margin-left 15px
     .weui-btn
       line-height 30px
-  ul
-    position relative
+  ul,li
     margin-left 20px
-  li
-    margin-left 20px
+    line-height 40px
+  .underline,li
+    border-bottom 1px solid #ccc
+
 </style>

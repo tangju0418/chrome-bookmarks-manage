@@ -1,5 +1,14 @@
 <template>
   <div>
+    <header>
+      <router-link to="/register" class="signup">
+        注册
+      </router-link>
+      <router-link to="/login" class="login">
+        登录
+      </router-link>
+
+    </header>
     <div class="weui-form-preview"  v-for="item in Items">
       <div class="weui-form-preview__hd">
           <label class="weui-form-preview__label">{{item.title}}</label>
@@ -73,6 +82,19 @@ export default {
 
 <style lang="stylus" scoped>
   @import "styl/publics";
+  header
+    height 40px
+    background -webkit-linear-gradient(left top, #47cfb9, #b8d950)
+    background linear-gradient(left top, #47cfb9, #b8d950)
+    .login,.signup
+      padding 8px
+      font-size 14px
+      float right
+    .login
+      color blue
+    .signup
+      margin-right 30px
+
   .weui-btn
     width 100px
     font-size 14px

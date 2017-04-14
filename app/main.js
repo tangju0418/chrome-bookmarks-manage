@@ -11,7 +11,14 @@ const routes = [
     path: '/home',
     component: require('app/pages/home.vue')
   },
-
+  {
+    path: '/login',
+    component: require('app/pages/login.vue')
+  },
+  {
+    path: '/register',
+    component: require('app/pages/register.vue')
+  },
   {
     path: '*',
     redirect: '/home'

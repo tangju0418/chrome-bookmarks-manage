@@ -28,9 +28,10 @@ import weui from 'app_modules/weui/weui.min.js'
 // import { bootstrap, configuration, login } from 'app/store/actions'
 
 
+Vue.component('bookmark', require('app/components/mark.vue'))
+
+
 Vue.use(require('vue-resource'))
-//Vue.use(require('vue-validator'))
-//Vue.use(require('vue-touch'))
 
 Vue.filter('datetime', filters.datetime)
 Vue.http.interceptors.push(httpInterceptor)

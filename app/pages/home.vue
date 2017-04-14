@@ -23,7 +23,10 @@
       </div>
 
     </div>
-    <div class="weui-form-preview">
+
+    <bookmark :information="information"></bookmark>
+
+    <!-- <div class="weui-form-preview">
       <div class="weui-form-preview__hd" style="background-color:#ccc">
           <label class="weui-form-preview__label">书签</label>
           <a class="weui-btn weui-btn_plain-primary wran">删除</a>
@@ -45,7 +48,7 @@
             </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -66,7 +69,49 @@ export default {
   },
   data: function() {
     return {
-      Items:[]
+      Items:[],
+      information:[
+        {
+          children:[
+            {children:[
+              {
+                children:[{
+                  children:[],
+                  title:'慕课网'
+                },{
+                  children:[],
+                  title:'W3C'
+                }],
+                title:'资料'
+              },
+              {children:[],
+              title:'百度'
+              },{
+              children:[],
+              title:'翻译'
+              }
+            ],
+            title:'常用'
+            },{
+            children:[
+              {children:[],
+              title:'vue'
+              },{
+              children:[],
+              title:'meui'
+              }
+            ],
+            title:'工作'
+            }
+          ],
+          title:'书签'
+        },
+        {
+          children:[],
+          title:'其它书签'
+        }
+      ],
+
     }
   },
 

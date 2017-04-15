@@ -1,6 +1,11 @@
 <template>
   <div>
     <header>
+      <div class="search">
+        <i class="weui-icon-search"></i>
+        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+      </div>
+
       <router-link to="/register" class="signup">
         注册
       </router-link>
@@ -146,6 +151,23 @@ export default {
       color blue
     .signup
       margin-right 30px
+    .search
+      width 400px
+      max-width 40%
+      float left
+      background #fff
+      height 24px
+      margin 8px 15px
+      border-radius 5px
+      .weui-icon-search
+        float left
+        padding 0 5px
+      .weui-search-bar__input
+        height 24px
+        border none
+        width 90%
+        float left
+        outline none
 
   .weui-form-preview__hd
     background-color #f3f3f3

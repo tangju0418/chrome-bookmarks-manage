@@ -1,8 +1,6 @@
 <template>
   <div>
-
     <ul v-for="info in information">
-     <!--  {{info|json}} -->
       <div v-if="isEmpty(info.url)">
         <p class="underline">{{info.title}}
           <a class="weui-btn weui-btn_plain-primary wran">删除</a>
@@ -16,9 +14,7 @@
         <a class="weui-btn weui-btn_plain-primary wran">删除</a>
         <a class="weui-btn weui-btn_plain-primary">修改</a>
       </li>
-
     </ul>
-
   </div>
 </template>
 
@@ -59,6 +55,7 @@ export default {
     margin-top 3px
   .wran
     border 1px solid #E64340
+    margin-right 15px
     color #E64340
     &:active
       border 1px solid #e48987

@@ -5,56 +5,15 @@
         <i class="weui-icon-search"></i>
         <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
       </div>
-
       <router-link to="/register" class="signup">
         注册
       </router-link>
       <router-link to="/login" class="login">
         登录
       </router-link>
-
     </header>
     <div class="content">
-      <div class="weui-form-preview"  v-for="item in Items">
-        <div class="weui-form-preview__hd">
-            <label class="weui-form-preview__label">{{item.title}}</label>
-            <em class="weui-form-preview__value">¥2400.00</em>
-        </div>
-        <div class="weui-form-preview__bd"  v-for=" i in item.children">
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label" v-if="!isEmpty(i)">{{i.title}}</label>
-                <span class="weui-form-preview__value">电动打蛋机</span>
-            </div>
-
-        </div>
-
-      </div>
-
-      <bookmark :information="information"></bookmark>
-
-      <!-- <div class="weui-form-preview">
-        <div class="weui-form-preview__hd" style="background-color:#ccc">
-            <label class="weui-form-preview__label">书签</label>
-            <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-            <a class="weui-btn weui-btn_plain-primary">修改</a>
-            <a class="weui-btn weui-btn weui-btn_plain-default">添加</a>
-        </div>
-        <div v-for=" i in 2">
-          <div class="weui-form-preview__hd" >
-            <label class="weui-form-preview__label" style="text-indent:2rem">常用</label>
-            <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-            <a class="weui-btn weui-btn_plain-primary">修改</a>
-            <a class="weui-btn weui-btn weui-btn_plain-default">添加</a>
-          </div>
-          <div class="weui-form-preview__bd"  v-for=" j in 2">
-              <div class="weui-form-preview__item">
-                  <label class="weui-form-preview__label" style="text-indent:2rem">百度</label>
-                  <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-                  <a class="weui-btn weui-btn_plain-primary">修改</a>
-              </div>
-          </div>
-        </div>
-      </div> -->
+      <bookmark :information="Items"></bookmark>
     </div>
   </div>
 </template>
@@ -68,7 +27,7 @@ export default {
     next(vm =>{
       chrome.bookmarks.getTree(
         function(bookmarkTreeNodes) {
-          console.log('书签列表0：',bookmarkTreeNodes[0].children)
+          console.log('bookmarkTreeNodes',bookmarkTreeNodes[0].children)
           vm.Items = bookmarkTreeNodes[0].children
         });
       })
@@ -123,7 +82,6 @@ export default {
           title:'其它书签'
         }
       ],
-
     }
   },
 
@@ -151,6 +109,7 @@ export default {
       color blue
     .signup
       margin-right 30px
+      color #333
     .search
       width 400px
       max-width 40%

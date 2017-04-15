@@ -72,7 +72,13 @@
 
 	var routes = [{
 	  path: '/home',
-	  component: __webpack_require__(168)
+	  component: __webpack_require__(172)
+	}, {
+	  path: '/login',
+	  component: __webpack_require__(176)
+	}, {
+	  path: '/register',
+	  component: __webpack_require__(180)
 	}, {
 	  path: '*',
 	  redirect: '/home'
@@ -10355,7 +10361,7 @@
 	  /* script */
 	  __webpack_require__(8),
 	  /* template */
-	  __webpack_require__(167),
+	  __webpack_require__(171),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
@@ -10513,11 +10519,7 @@
 	// import { bootstrap, configuration, login } from 'app/store/actions'
 
 
-	_vue2.default.use(__webpack_require__(165));
-	//Vue.use(require('vue-validator'))
-	//Vue.use(require('vue-touch'))
-
-	//
+	_vue2.default.component('bookmark', __webpack_require__(165)); //
 	//
 	//
 	//
@@ -10528,6 +10530,8 @@
 	//
 	//
 
+
+	_vue2.default.use(__webpack_require__(169));
 
 	_vue2.default.filter('datetime', filters.datetime);
 	_vue2.default.http.interceptors.push(_httpIntercept2.default);
@@ -22767,6 +22771,138 @@
 /* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	/* styles */
+	__webpack_require__(166)
+
+	var Component = __webpack_require__(7)(
+	  /* script */
+	  __webpack_require__(167),
+	  /* template */
+	  __webpack_require__(168),
+	  /* scopeId */
+	  "data-v-669f43be",
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "H:\\chromeExtension\\chrome-bookmarks\\app\\components\\mark.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] mark.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-669f43be", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-669f43be", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ },
+/* 166 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _vue = __webpack_require__(1);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _utils = __webpack_require__(70);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+	exports.default = {
+	  props: ['information'],
+	  data: function data() {
+	    return {
+	      Items: []
+
+	    };
+	  },
+
+	  computed: {},
+	  methods: {
+	    isEmpty: _utils.isEmpty
+
+	  }
+	};
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', _vm._l((_vm.information), function(info) {
+	    return _c('ul', [(_vm.isEmpty(info.url)) ? _c('div', [_c('p', {
+	      staticClass: "underline"
+	    }, [_vm._v(_vm._s(info.title) + "\n        "), _c('a', {
+	      staticClass: "weui-btn weui-btn_plain-primary wran"
+	    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
+	      staticClass: "weui-btn weui-btn_plain-primary"
+	    }, [_vm._v("修改")]), _vm._v(" "), _c('a', {
+	      staticClass: "weui-btn weui-btn weui-btn_plain-default"
+	    }, [_vm._v("添加")])]), _vm._v(" "), (!_vm.isEmpty(info.children)) ? _c('bookmark', {
+	      attrs: {
+	        "information": info.children
+	      }
+	    }) : _vm._e()], 1) : _vm._e(), _vm._v(" "), (!_vm.isEmpty(info.url)) ? _c('li', [_vm._v(_vm._s(info.title) + "\n      "), _c('a', {
+	      staticClass: "weui-btn weui-btn_plain-primary wran"
+	    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
+	      staticClass: "weui-btn weui-btn_plain-primary"
+	    }, [_vm._v("修改")])]) : _vm._e()])
+	  }))
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-669f43be", module.exports)
+	  }
+	}
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/*!
 	 * vue-resource v1.3.1
 	 * https://github.com/pagekit/vue-resource
@@ -23851,7 +23987,7 @@
 
 	var nodeClient = function (request) {
 
-	    var client = __webpack_require__(166);
+	    var client = __webpack_require__(170);
 
 	    return new PromiseObj(function (resolve) {
 
@@ -24314,13 +24450,13 @@
 
 
 /***/ },
-/* 166 */
+/* 170 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 167 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -24343,18 +24479,18 @@
 	}
 
 /***/ },
-/* 168 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(169)
+	__webpack_require__(173)
 
 	var Component = __webpack_require__(7)(
 	  /* script */
-	  __webpack_require__(170),
+	  __webpack_require__(174),
 	  /* template */
-	  __webpack_require__(171),
+	  __webpack_require__(175),
 	  /* scopeId */
 	  "data-v-6c0cbf9f",
 	  /* cssModules */
@@ -24381,13 +24517,13 @@
 
 
 /***/ },
-/* 169 */
+/* 173 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 170 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24424,35 +24560,12 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	exports.default = {
 	  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
 	    next(function (vm) {
 	      chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
-	        console.log('书签列表0：', bookmarkTreeNodes[0].children);
+	        console.log('bookmarkTreeNodes', bookmarkTreeNodes[0].children);
 	        vm.Items = bookmarkTreeNodes[0].children;
 	      });
 	    });
@@ -24460,7 +24573,44 @@
 
 	  data: function data() {
 	    return {
-	      Items: []
+	      Items: [],
+	      information: [{
+	        children: [{ children: [{
+	            children: [{
+	              children: [],
+	              url: 'muke',
+	              title: '慕课网'
+	            }, {
+	              children: [],
+	              url: 'w3c',
+	              title: 'W3C'
+	            }],
+	            title: '资料'
+	          }, { children: [],
+	            url: 'baidu',
+	            title: '百度'
+	          }, {
+	            children: [],
+	            url: 'fanyi',
+	            title: '翻译'
+	          }],
+	          title: '常用'
+	        }, {
+	          children: [{ children: [],
+	            url: 'vue',
+	            title: 'vue'
+	          }, {
+	            children: [],
+	            url: 'meui',
+	            title: 'meui'
+	          }],
+	          title: '工作'
+	        }],
+	        title: '书签'
+	      }, {
+	        children: [],
+	        title: '其它书签'
+	      }]
 	    };
 	  },
 
@@ -24471,88 +24621,547 @@
 	};
 
 /***/ },
-/* 171 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_vm._l((_vm.Items), function(item) {
-	    return _c('div', {
-	      staticClass: "weui-form-preview"
-	    }, [_c('div', {
-	      staticClass: "weui-form-preview__hd"
-	    }, [_c('label', {
-	      staticClass: "weui-form-preview__label"
-	    }, [_vm._v(_vm._s(item.title))]), _vm._v(" "), _c('em', {
-	      staticClass: "weui-form-preview__value"
-	    }, [_vm._v("¥2400.00")])]), _vm._v(" "), _vm._l((item.children), function(i) {
-	      return _c('div', {
-	        staticClass: "weui-form-preview__bd"
-	      }, [_c('div', {
-	        staticClass: "weui-form-preview__item"
-	      }, [(!_vm.isEmpty(i)) ? _c('label', {
-	        staticClass: "weui-form-preview__label"
-	      }, [_vm._v(_vm._s(i.title))]) : _vm._e(), _vm._v(" "), _c('span', {
-	        staticClass: "weui-form-preview__value"
-	      }, [_vm._v("电动打蛋机")])])])
-	    })], 2)
-	  }), _vm._v(" "), _c('div', {
-	    staticClass: "weui-form-preview"
-	  }, [_vm._m(0), _vm._v(" "), _vm._l((2), function(i) {
-	    return _c('div', [_vm._m(1, true), _vm._v(" "), _vm._l((2), function(j) {
-	      return _c('div', {
-	        staticClass: "weui-form-preview__bd"
-	      }, [_vm._m(2, true)])
-	    })], 2)
-	  })], 2)], 2)
+	  return _c('div', [_c('header', [_vm._m(0), _vm._v(" "), _c('router-link', {
+	    staticClass: "signup",
+	    attrs: {
+	      "to": "/register"
+	    }
+	  }, [_vm._v("\n      注册\n    ")]), _vm._v(" "), _c('router-link', {
+	    staticClass: "login",
+	    attrs: {
+	      "to": "/login"
+	    }
+	  }, [_vm._v("\n      登录\n    ")])], 1), _vm._v(" "), _c('div', {
+	    staticClass: "content"
+	  }, [_c('bookmark', {
+	    attrs: {
+	      "information": _vm.Items
+	    }
+	  })], 1)])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
-	    staticClass: "weui-form-preview__hd",
-	    staticStyle: {
-	      "background-color": "#ccc"
+	    staticClass: "search"
+	  }, [_c('i', {
+	    staticClass: "weui-icon-search"
+	  }), _vm._v(" "), _c('input', {
+	    staticClass: "weui-search-bar__input",
+	    attrs: {
+	      "type": "search",
+	      "id": "searchInput",
+	      "placeholder": "搜索",
+	      "required": ""
 	    }
-	  }, [_c('label', {
-	    staticClass: "weui-form-preview__label"
-	  }, [_vm._v("书签")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn_plain-primary wran"
-	  }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn_plain-primary"
-	  }, [_vm._v("修改")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn weui-btn_plain-default"
-	  }, [_vm._v("添加")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: "weui-form-preview__hd"
-	  }, [_c('label', {
-	    staticClass: "weui-form-preview__label",
-	    staticStyle: {
-	      "text-indent": "2rem"
-	    }
-	  }, [_vm._v("常用")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn_plain-primary wran"
-	  }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn_plain-primary"
-	  }, [_vm._v("修改")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn weui-btn_plain-default"
-	  }, [_vm._v("添加")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: "weui-form-preview__item"
-	  }, [_c('label', {
-	    staticClass: "weui-form-preview__label",
-	    staticStyle: {
-	      "text-indent": "2rem"
-	    }
-	  }, [_vm._v("百度")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn_plain-primary wran"
-	  }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
-	    staticClass: "weui-btn weui-btn_plain-primary"
-	  }, [_vm._v("修改")])])
+	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
 	     require("vue-hot-reload-api").rerender("data-v-6c0cbf9f", module.exports)
+	  }
+	}
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(177)
+
+	var Component = __webpack_require__(7)(
+	  /* script */
+	  __webpack_require__(178),
+	  /* template */
+	  __webpack_require__(179),
+	  /* scopeId */
+	  "data-v-33701ad9",
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "H:\\chromeExtension\\chrome-bookmarks\\app\\pages\\login.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] login.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-33701ad9", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-33701ad9", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ },
+/* 177 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _api = __webpack_require__(69);
+
+	var api = _interopRequireWildcard(_api);
+
+	var _utils = __webpack_require__(70);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	exports.default = {
+	  route: {
+	    data: function data(transition) {}
+	  },
+
+	  data: function data() {
+	    return {
+	      model: {
+	        Username: '',
+	        Password: ''
+	      },
+
+	      submitted: false,
+	      load: false,
+	      showDownlad: false
+	    };
+	  },
+
+	  computed: {},
+	  methods: {
+	    isEmpty: _utils.isEmpty,
+	    submit: function submit() {
+	      var vm = this;
+	      vm.submitted = true;
+	      if (!(0, _utils.isEmpty)(vm.model.Username) && !(0, _utils.isEmpty)(vm.model.Password)) {
+	        var clientId = 'user';
+	        var clientSecret = 'web';
+	        var username = vm.model.Username;
+	        var password = vm.model.Password;
+	        vm.load = true;
+	        api.accessToken(vm, clientId, clientSecret, username, password).then(function (response) {
+	          if (response.data.Code == 0) {
+	            var access_token = response.data.Data.AccessToken;
+	            var refresh_token = response.data.Data.RefreshToken;
+	            var expires_in = response.data.Data.ExpiresIn;
+	            //login(access_token)
+	            vm.$store.dispatch('login', access_token);
+	            vm.$router.replace('/home');
+	            vm.load = false;
+	          } else {
+	            (0, _utils.errorMessageHandler)('登录', (0, _utils.createError)(1, response.data.Message));
+	            vm.load = false;
+	          }
+	        });
+	      }
+	    }
+
+	  }
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "page"
+	  }, [_c('div', {
+	    staticClass: "mui-content"
+	  }, [_c('div', {
+	    staticClass: "logo"
+	  }), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cells weui-ells_form"
+	  }, [_c('div', {
+	    staticClass: "weui-cell"
+	  }, [_vm._m(0), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cell_bd weui-cell_primary"
+	  }, [_c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.model.Username),
+	      expression: "model.Username"
+	    }],
+	    staticClass: "weui-input",
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "用户名"
+	    },
+	    domProps: {
+	      "value": (_vm.model.Username)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.model.Username = $event.target.value
+	      }
+	    }
+	  }), _vm._v(" "), _c('i', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.submitted && _vm.isEmpty(_vm.model.Username)),
+	      expression: "submitted && isEmpty(model.Username)"
+	    }],
+	    staticClass: "weui-icon-warn v-invalid"
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cell"
+	  }, [_vm._m(1), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cell_bd weui-cell_primary"
+	  }, [_c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.model.Password),
+	      expression: "model.Password"
+	    }],
+	    staticClass: "weui-input",
+	    attrs: {
+	      "id": "password",
+	      "type": "Password",
+	      "placeholder": "请输入密码"
+	    },
+	    domProps: {
+	      "value": (_vm.model.Password)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.model.Password = $event.target.value
+	      }
+	    }
+	  }), _vm._v(" "), _c('i', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.submitted && _vm.isEmpty(_vm.model.Password)),
+	      expression: "submitted && isEmpty(model.Password)"
+	    }],
+	    staticClass: "weui-icon-warn v-invalid"
+	  })])])]), _vm._v(" "), _c('button', {
+	    staticClass: "weui-btn register weui-btn_primary",
+	    attrs: {
+	      "href": "javascript:;"
+	    },
+	    on: {
+	      "click": _vm.submit
+	    }
+	  }, [_vm._v("登陆")])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "weui-cell_hd"
+	  }, [_c('label', {
+	    staticClass: "weui-label"
+	  }, [_vm._v("账号")])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "weui-cell_hd"
+	  }, [_c('label', {
+	    staticClass: "weui-label"
+	  }, [_vm._v("密码")])])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-33701ad9", module.exports)
+	  }
+	}
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(181)
+
+	var Component = __webpack_require__(7)(
+	  /* script */
+	  __webpack_require__(182),
+	  /* template */
+	  __webpack_require__(183),
+	  /* scopeId */
+	  "data-v-bdd5393a",
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "H:\\chromeExtension\\chrome-bookmarks\\app\\pages\\register.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] register.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-bdd5393a", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-bdd5393a", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ },
+/* 181 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _api = __webpack_require__(69);
+
+	var api = _interopRequireWildcard(_api);
+
+	var _utils = __webpack_require__(70);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	exports.default = {
+	  route: {
+	    data: function data(transition) {}
+	  },
+
+	  data: function data() {
+	    return {
+	      model: {
+	        Username: '',
+	        Password: ''
+	      },
+
+	      submitted: false,
+	      load: false,
+	      showDownlad: false
+	    };
+	  },
+
+	  computed: {},
+	  methods: {
+	    isEmpty: _utils.isEmpty,
+	    submit: function submit() {
+	      var vm = this;
+	      vm.submitted = true;
+	      if (!(0, _utils.isEmpty)(vm.model.Username) && !(0, _utils.isEmpty)(vm.model.Password)) {
+	        var clientId = 'user';
+	        var clientSecret = 'web';
+	        var username = vm.model.Username;
+	        var password = vm.model.Password;
+	        vm.load = true;
+	        api.accessToken(vm, clientId, clientSecret, username, password).then(function (response) {
+	          if (response.data.Code == 0) {
+	            var access_token = response.data.Data.AccessToken;
+	            var refresh_token = response.data.Data.RefreshToken;
+	            var expires_in = response.data.Data.ExpiresIn;
+	            //login(access_token)
+	            vm.$store.dispatch('login', access_token);
+	            vm.$router.replace('/home');
+	            vm.load = false;
+	          } else {
+	            (0, _utils.errorMessageHandler)('注册', (0, _utils.createError)(1, response.data.Message));
+	            vm.load = false;
+	          }
+	        });
+	      }
+	    }
+
+	  }
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "page"
+	  }, [_c('div', {
+	    staticClass: "mui-content"
+	  }, [_c('div', {
+	    staticClass: "logo"
+	  }), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cells weui-ells_form"
+	  }, [_c('div', {
+	    staticClass: "weui-cell"
+	  }, [_vm._m(0), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cell_bd weui-cell_primary"
+	  }, [_c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.model.Username),
+	      expression: "model.Username"
+	    }],
+	    staticClass: "weui-input",
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "用户名"
+	    },
+	    domProps: {
+	      "value": (_vm.model.Username)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.model.Username = $event.target.value
+	      }
+	    }
+	  }), _vm._v(" "), _c('i', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.submitted && _vm.isEmpty(_vm.model.Username)),
+	      expression: "submitted && isEmpty(model.Username)"
+	    }],
+	    staticClass: "weui-icon-warn v-invalid"
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cell"
+	  }, [_vm._m(1), _vm._v(" "), _c('div', {
+	    staticClass: "weui-cell_bd weui-cell_primary"
+	  }, [_c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.model.Password),
+	      expression: "model.Password"
+	    }],
+	    staticClass: "weui-input",
+	    attrs: {
+	      "id": "password",
+	      "type": "Password",
+	      "placeholder": "请输入密码"
+	    },
+	    domProps: {
+	      "value": (_vm.model.Password)
+	    },
+	    on: {
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.model.Password = $event.target.value
+	      }
+	    }
+	  }), _vm._v(" "), _c('i', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.submitted && _vm.isEmpty(_vm.model.Password)),
+	      expression: "submitted && isEmpty(model.Password)"
+	    }],
+	    staticClass: "weui-icon-warn v-invalid"
+	  })])])]), _vm._v(" "), _c('button', {
+	    staticClass: "weui-btn register weui-btn_primary",
+	    attrs: {
+	      "href": "javascript:;"
+	    },
+	    on: {
+	      "click": _vm.submit
+	    }
+	  }, [_vm._v("注册")])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "weui-cell_hd"
+	  }, [_c('label', {
+	    staticClass: "weui-label"
+	  }, [_vm._v("账号")])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "weui-cell_hd"
+	  }, [_c('label', {
+	    staticClass: "weui-label"
+	  }, [_vm._v("密码")])])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-bdd5393a", module.exports)
 	  }
 	}
 

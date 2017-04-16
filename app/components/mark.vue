@@ -1,19 +1,19 @@
 <template>
   <div>
-    <ul v-for="info in information">
-      <div v-if="isEmpty(info.url)">
-        <p class="underline">{{info.title}}
+    <ul v-for="item in Items">
+      <div v-if="isEmpty(item.url)">
+        <p class="underline">{{item.title}}
           <a class="weui-btn weui-btn_plain-primary wran">删除</a>
           <a class="weui-btn weui-btn_plain-primary">修改</a>
-          <a class="weui-btn weui-btn weui-btn_plain-default">添加</a>
         </p>
 
-        <bookmark v-if="!isEmpty(info.children)" :information="info.children"></bookmark>
+        <bookmark v-if="!isEmpty(item.children)" :Items="item.children" :queryMessage="isMatched(item.title) ? '' : queryMessage"></bookmark>
       </div>
-      <li v-if="!isEmpty(info.url)">{{info.title}}
+      <li v-if="!isEmpty(item.url) && isMatched(item.title)">{{item.title}}
         <a class="weui-btn weui-btn_plain-primary wran">删除</a>
         <a class="weui-btn weui-btn_plain-primary">修改</a>
       </li>
+      <span v-if="!isEmpty(item.url) && !isMatched(item.title)"></span>
     </ul>
   </div>
 </template>
@@ -23,10 +23,9 @@ import Vue from 'vue'
 import { isEmpty } from 'utils'
 
 export default {
-  props: ['information'],
+  props: ['Items','queryMessage'],
   data: function() {
     return {
-      Items:[],
 
     }
   },
@@ -36,7 +35,12 @@ export default {
   },
   methods: {
     isEmpty,
-
+    isMatched(title){
+      if(String(title).indexOf(this.queryMessage) == -1){
+        return false
+      }
+      return true
+    },
   }
 }
 

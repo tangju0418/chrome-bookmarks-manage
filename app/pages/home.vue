@@ -3,7 +3,7 @@
     <header>
       <div class="search">
         <i class="weui-icon-search"></i>
-        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+        <input type="search" class="weui-search-bar__input" placeholder="搜索" v-model="message" @keyup.enter="query">
       </div>
       <router-link to="/register" class="signup">
         注册
@@ -13,7 +13,7 @@
       </router-link>
     </header>
     <div class="content">
-      <bookmark :information="Items"></bookmark>
+      <bookmark :Items="Items" :queryMessage="queryMessage"></bookmark>
     </div>
   </div>
 </template>
@@ -35,6 +35,9 @@ export default {
   data: function() {
     return {
       Items:[],
+      message:'',
+      queryMessage:'',
+      //模拟书签数据
       information:[
         {
           children:[
@@ -90,6 +93,9 @@ export default {
   },
   methods: {
     isEmpty,
+    query(){
+      this.queryMessage = this.message
+    },
   }
 }
 

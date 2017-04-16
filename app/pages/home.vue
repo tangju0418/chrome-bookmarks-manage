@@ -15,12 +15,28 @@
     <div class="content">
       <bookmark :Items="Items" :queryMessage="queryMessage"></bookmark>
     </div>
+    <!-- 弹窗 -->
+    <div class="hide" v-show="detail" @click="close"></div>
+    <div class="hide-off hide-off-flowers" v-show="detail">
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">名称</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" v-model="name">
+            </div>
+        </div>
+      </div>
+      <button class="weui-btn register weui-btn_primary">确认</button>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { isEmpty } from 'utils'
+import store from 'app/store'
+import { post } from 'api'
+import { isEmpty, back ,errorMessageHandler,createError,wrapError} from 'utils'
+import weui from 'app_modules/weui/weui.min.js'
 
 export default {
  beforeRouteEnter(to, from, next){
@@ -37,6 +53,8 @@ export default {
       Items:[],
       message:'',
       queryMessage:'',
+      detail:false,
+      name:'',
       //模拟书签数据
       information:[
         {
@@ -89,13 +107,27 @@ export default {
   },
 
   computed: {
-
+    currentMark(){
+      return store.state.currentmark.markbook
+    },
   },
   methods: {
     isEmpty,
     query(){
       this.queryMessage = this.message
     },
+    close(){
+      this.detail = false
+      store.dispatch('deletMarkbook')
+    }
+  },
+  watch:{
+    'currentMark':function(val){
+      if(!isEmpty(val)){
+        this.detail = true
+        this.name = val.title
+      }
+    }
   }
 }
 
@@ -148,5 +180,36 @@ export default {
       margin-left 15px
     .weui-btn
       line-height 30px
+   .hide
+    position fixed
+    background-color #000
+    z-index 1000
+    top: 0
+    right 0
+    bottom 0
+    left 0
+    opacity 0.5
+    max-width 100%
+    margin 0 auto
+
+  .hide-off
+    left 0
+    right 0
+    top 24%
+    width 500px
+    height 300px
+    z-index 1000
+    margin 0 auto
+    position fixed
+    overflow hidden
+    text-align center
+    border-radius 10px
+    background-color #fff
+    .weui-cells
+      margin 60px 0
+      .weui-label
+        color #888
+    .weui-btn
+      width 80%
 
 </style>

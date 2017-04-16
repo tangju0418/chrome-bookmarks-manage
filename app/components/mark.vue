@@ -4,14 +4,14 @@
       <div v-if="isEmpty(item.url)">
         <p class="underline">{{item.title}}
           <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-          <a class="weui-btn weui-btn_plain-primary">修改</a>
+          <a class="weui-btn weui-btn_plain-primary" @click="update(item)">修改</a>
         </p>
 
         <bookmark v-if="!isEmpty(item.children)" :Items="item.children" :queryMessage="isMatched(item.title) ? '' : queryMessage"></bookmark>
       </div>
       <li v-if="!isEmpty(item.url) && isMatched(item.title)">{{item.title}}
         <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-        <a class="weui-btn weui-btn_plain-primary">修改</a>
+        <a class="weui-btn weui-btn_plain-primary" @click="update(item)">修改</a>
       </li>
       <span v-if="!isEmpty(item.url) && !isMatched(item.title)"></span>
     </ul>
@@ -20,7 +20,10 @@
 
 <script>
 import Vue from 'vue'
-import { isEmpty } from 'utils'
+import store from 'app/store'
+import { post } from 'api'
+import { isEmpty, back ,errorMessageHandler,createError,wrapError} from 'utils'
+import weui from 'app_modules/weui/weui.min.js'
 
 export default {
   props: ['Items','queryMessage'],
@@ -41,6 +44,9 @@ export default {
       }
       return true
     },
+    update(mark){
+      store.dispatch('setMarkbook',mark)
+    }
   }
 }
 

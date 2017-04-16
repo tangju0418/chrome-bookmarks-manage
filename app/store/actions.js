@@ -69,3 +69,10 @@ export function logout (state){
   bootstrap(state)
 }
 
+export function setMarkbook ( state , args)  {
+  state.commit(types.CURRENTMARK, args)
+}
+
+export function deletMarkbook ( state )  {
+  state.commit(types.DELETMARK)
+}

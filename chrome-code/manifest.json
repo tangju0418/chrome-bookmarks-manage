@@ -2,7 +2,6 @@
   "name": "My Bookmarks",
   "version": "1.0",
   "description": "A browser action with a popup dump of all bookmarks, including search, add, edit and delete.",
-  "default_locale": "zh_CN",
   "permissions": [
     "bookmarks"
   ],

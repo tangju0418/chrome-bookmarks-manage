@@ -22851,18 +22851,20 @@
 	//
 
 	exports.default = {
-	  props: ['information'],
+	  props: ['Items', 'queryMessage'],
 	  data: function data() {
-	    return {
-	      Items: []
-
-	    };
+	    return {};
 	  },
 
 	  computed: {},
 	  methods: {
-	    isEmpty: _utils.isEmpty
-
+	    isEmpty: _utils.isEmpty,
+	    isMatched: function isMatched(title) {
+	      if (String(title).indexOf(this.queryMessage) == -1) {
+	        return false;
+	      }
+	      return true;
+	    }
 	  }
 	};
 
@@ -22871,24 +22873,23 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', _vm._l((_vm.information), function(info) {
-	    return _c('ul', [(_vm.isEmpty(info.url)) ? _c('div', [_c('p', {
+	  return _c('div', _vm._l((_vm.Items), function(item) {
+	    return _c('ul', [(_vm.isEmpty(item.url)) ? _c('div', [_c('p', {
 	      staticClass: "underline"
-	    }, [_vm._v(_vm._s(info.title) + "\n        "), _c('a', {
+	    }, [_vm._v(_vm._s(item.title) + "\n        "), _c('a', {
 	      staticClass: "weui-btn weui-btn_plain-primary wran"
 	    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
 	      staticClass: "weui-btn weui-btn_plain-primary"
-	    }, [_vm._v("修改")]), _vm._v(" "), _c('a', {
-	      staticClass: "weui-btn weui-btn weui-btn_plain-default"
-	    }, [_vm._v("添加")])]), _vm._v(" "), (!_vm.isEmpty(info.children)) ? _c('bookmark', {
+	    }, [_vm._v("修改")])]), _vm._v(" "), (!_vm.isEmpty(item.children)) ? _c('bookmark', {
 	      attrs: {
-	        "information": info.children
+	        "Items": item.children,
+	        "queryMessage": _vm.isMatched(item.title) ? '' : _vm.queryMessage
 	      }
-	    }) : _vm._e()], 1) : _vm._e(), _vm._v(" "), (!_vm.isEmpty(info.url)) ? _c('li', [_vm._v(_vm._s(info.title) + "\n      "), _c('a', {
+	    }) : _vm._e()], 1) : _vm._e(), _vm._v(" "), (!_vm.isEmpty(item.url) && _vm.isMatched(item.title)) ? _c('li', [_vm._v(_vm._s(item.title) + "\n      "), _c('a', {
 	      staticClass: "weui-btn weui-btn_plain-primary wran"
 	    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
 	      staticClass: "weui-btn weui-btn_plain-primary"
-	    }, [_vm._v("修改")])]) : _vm._e()])
+	    }, [_vm._v("修改")])]) : _vm._e(), _vm._v(" "), (!_vm.isEmpty(item.url) && !_vm.isMatched(item.title)) ? _c('span') : _vm._e()])
 	  }))
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
@@ -24574,6 +24575,9 @@
 	  data: function data() {
 	    return {
 	      Items: [],
+	      message: '',
+	      queryMessage: '',
+	      //模拟书签数据
 	      information: [{
 	        children: [{ children: [{
 	            children: [{
@@ -24616,7 +24620,10 @@
 
 	  computed: {},
 	  methods: {
-	    isEmpty: _utils.isEmpty
+	    isEmpty: _utils.isEmpty,
+	    query: function query() {
+	      this.queryMessage = this.message;
+	    }
 	  }
 	};
 
@@ -24625,7 +24632,36 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('header', [_vm._m(0), _vm._v(" "), _c('router-link', {
+	  return _c('div', [_c('header', [_c('div', {
+	    staticClass: "search"
+	  }, [_c('i', {
+	    staticClass: "weui-icon-search"
+	  }), _vm._v(" "), _c('input', {
+	    directives: [{
+	      name: "model",
+	      rawName: "v-model",
+	      value: (_vm.message),
+	      expression: "message"
+	    }],
+	    staticClass: "weui-search-bar__input",
+	    attrs: {
+	      "type": "search",
+	      "placeholder": "搜索"
+	    },
+	    domProps: {
+	      "value": (_vm.message)
+	    },
+	    on: {
+	      "keyup": function($event) {
+	        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+	        _vm.query($event)
+	      },
+	      "input": function($event) {
+	        if ($event.target.composing) { return; }
+	        _vm.message = $event.target.value
+	      }
+	    }
+	  })]), _vm._v(" "), _c('router-link', {
 	    staticClass: "signup",
 	    attrs: {
 	      "to": "/register"
@@ -24639,24 +24675,11 @@
 	    staticClass: "content"
 	  }, [_c('bookmark', {
 	    attrs: {
-	      "information": _vm.Items
+	      "Items": _vm.Items,
+	      "queryMessage": _vm.queryMessage
 	    }
 	  })], 1)])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: "search"
-	  }, [_c('i', {
-	    staticClass: "weui-icon-search"
-	  }), _vm._v(" "), _c('input', {
-	    staticClass: "weui-search-bar__input",
-	    attrs: {
-	      "type": "search",
-	      "id": "searchInput",
-	      "placeholder": "搜索",
-	      "required": ""
-	    }
-	  })])
-	}]}
+	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()

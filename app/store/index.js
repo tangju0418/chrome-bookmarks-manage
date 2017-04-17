@@ -7,6 +7,7 @@ import toast from './mutations/toast'
 import startup from './mutations/startup'
 import profile from './mutations/profile'
 import currentmark from './mutations/currentmark'
+import bookmarks from './mutations/bookmarks'
 
 import { localStoragePlugin } from './plugin'
 import Setting from 'setting'
@@ -23,7 +24,8 @@ export default new Vuex.Store({
     toast,
     startup,
     profile,
-    currentmark
+    currentmark,
+    bookmarks
   },
   strict: !hosting.isDevelopment,
   plugin: plugin

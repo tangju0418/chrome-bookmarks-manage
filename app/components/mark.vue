@@ -2,17 +2,10 @@
   <div>
     <ul v-for="item in Items">
       <div v-if="isEmpty(item.url)">
-        <p class="underline">{{item.title}}
-          <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-          <a class="weui-btn weui-btn_plain-primary" @click="update(item)">修改</a>
-        </p>
-
+        <p class="underline" @click="update(item)">{{item.title}}</p>
         <bookmark v-if="!isEmpty(item.children)" :Items="item.children" :queryMessage="isMatched(item.title) ? '' : queryMessage"></bookmark>
       </div>
-      <li v-if="!isEmpty(item.url) && isMatched(item.title)">{{item.title}}
-        <a class="weui-btn weui-btn_plain-primary wran">删除</a>
-        <a class="weui-btn weui-btn_plain-primary" @click="update(item)">修改</a>
-      </li>
+      <li v-if="!isEmpty(item.url) && isMatched(item.title)" @click="update(item)">{{item.title}} </li>
       <span v-if="!isEmpty(item.url) && !isMatched(item.title)"></span>
     </ul>
   </div>
@@ -63,13 +56,6 @@ export default {
     height 24px
     line-height 24px
     margin-top 3px
-  .wran
-    border 1px solid #E64340
-    margin-right 15px
-    color #E64340
-    &:active
-      border 1px solid #e48987
-      color #e48987
 
   ul,li
     margin-left 20px
@@ -77,5 +63,7 @@ export default {
   .underline,li
     border-bottom 1px solid #ccc
     font-size 14px
+    &:active
+      background-color #ccc
 
 </style>

@@ -26,7 +26,8 @@
             </div>
         </div>
       </div>
-      <button class="weui-btn register weui-btn_primary">确认</button>
+      <button class="weui-btn register weui-btn_primary" @click="updateMark">修改</button>
+      <a class="weui-btn weui-btn_plain-primary wran" @click="deleteMark">删除</a>
     </div>
   </div>
 </template>
@@ -41,16 +42,11 @@ import weui from 'app_modules/weui/weui.min.js'
 export default {
  beforeRouteEnter(to, from, next){
     next(vm =>{
-      chrome.bookmarks.getTree(
-        function(bookmarkTreeNodes) {
-          console.log('bookmarkTreeNodes',bookmarkTreeNodes[0].children)
-          vm.Items = bookmarkTreeNodes[0].children
-        });
-      })
+      vm.getBookMarks()
+    })
   },
   data: function() {
     return {
-      Items:[],
       message:'',
       queryMessage:'',
       detail:false,
@@ -107,19 +103,67 @@ export default {
   },
 
   computed: {
+    Items(){
+      return store.state.bookmarks.Items
+    },
     currentMark(){
       return store.state.currentmark.markbook
     },
   },
   methods: {
     isEmpty,
+    getBookMarks(){
+      chrome.bookmarks.getTree(
+      function(bookmarkTreeNodes) {
+        console.log('bookmarkTreeNodes',bookmarkTreeNodes[0].children)
+        store.dispatch('setMarkbookItem',bookmarkTreeNodes[0].children)
+      });
+    },
     query(){
       this.queryMessage = this.message
     },
     close(){
       this.detail = false
       store.dispatch('deletMarkbook')
-    }
+    },
+    updateMark(){
+      const vm = this
+      let id = vm.currentMark.id
+      let title = vm.name
+      try{
+        chrome.bookmarks.update(id,{title:title},function(){
+          vm.getBookMarks()
+          vm.close()
+        })
+      }catch(e){
+        alert(e.message)
+      }
+    },
+    deleteMark(){
+      const vm = this
+      let id = vm.currentMark.id
+      if(isEmpty(vm.currentMark.children)){
+        try{
+          chrome.bookmarks.remove(id,function(){
+            vm.getBookMarks()
+            vm.close()
+          })
+        }catch(e){
+          alert(e.message)
+        }
+
+      }else{
+        try{
+          chrome.bookmarks.removeTree(id,function(){
+            vm.getBookMarks()
+            vm.close()
+          })
+        }catch(e){
+          alert(e.message)
+        }
+      }
+
+    },
   },
   watch:{
     'currentMark':function(val){
@@ -158,11 +202,12 @@ export default {
       border-radius 5px
       .weui-icon-search
         float left
-        padding 0 5px
+        max-width 6%
+        padding 0 2%
       .weui-search-bar__input
         height 24px
         border none
-        width 90%
+        width 88%
         float left
         outline none
 
@@ -206,10 +251,15 @@ export default {
     border-radius 10px
     background-color #fff
     .weui-cells
-      margin 60px 0
+      margin 50px 0
       .weui-label
         color #888
     .weui-btn
       width 80%
-
+  .wran
+    border 1px solid #E64340
+    color #E64340
+    &:active
+      border 1px solid #e48987
+      color #e48987
 </style>

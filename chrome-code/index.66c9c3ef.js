@@ -22960,6 +22960,7 @@
 	//
 	//
 	//
+	//
 
 /***/ }),
 /* 170 */
@@ -22985,7 +22986,9 @@
 	          _vm.update(item)
 	        }
 	      }
-	    }, [_vm._v(_vm._s(item.title) + " ")]) : _vm._e(), _vm._v(" "), (!_vm.isEmpty(item.url) && !_vm.isMatched(item.title)) ? _c('span') : _vm._e()])
+	    }, [_c('i', {
+	      staticClass: "iconfont icon-tag"
+	    }), _vm._v(_vm._s(item.title) + " ")]) : _vm._e(), _vm._v(" "), (!_vm.isEmpty(item.url) && !_vm.isMatched(item.title)) ? _c('span') : _vm._e()])
 	  }))
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true

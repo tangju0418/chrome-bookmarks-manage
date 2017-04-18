@@ -65,6 +65,14 @@ li[data-v-4119519a] {
 li[data-v-4119519a]:active {
   background-color: #ccc;
 }
+li[data-v-4119519a] {
+  list-style-type: none;
+}
+.iconfont[data-v-4119519a] {
+  font-size: 16px;
+  color: #47cfb9;
+  padding-right: 5px;
+}
 
 header[data-v-7f92e34d] {
   height: 40px;
@@ -139,7 +147,7 @@ header .search .weui-search-bar__input[data-v-7f92e34d] {
   left: 0;
   right: 0;
   top: 24%;
-  width: 500px;
+  width: 50%;
   height: 300px;
   z-index: 1000;
   margin: 0 auto;

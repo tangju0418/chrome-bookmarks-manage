@@ -241,7 +241,7 @@ export default {
     left 0
     right 0
     top 24%
-    width 500px
+    width 50%
     height 300px
     z-index 1000
     margin 0 auto

@@ -5,7 +5,8 @@
         <p class="underline" @click="update(item)">{{item.title}}</p>
         <bookmark v-if="!isEmpty(item.children)" :Items="item.children" :queryMessage="isMatched(item.title) ? '' : queryMessage"></bookmark>
       </div>
-      <li v-if="!isEmpty(item.url) && isMatched(item.title)" @click="update(item)">{{item.title}} </li>
+      <li v-if="!isEmpty(item.url) && isMatched(item.title)" @click="update(item)">
+      <i class="iconfont icon-tag"></i>{{item.title}} </li>
       <span v-if="!isEmpty(item.url) && !isMatched(item.title)"></span>
     </ul>
   </div>
@@ -65,5 +66,10 @@ export default {
     font-size 14px
     &:active
       background-color #ccc
-
+  li
+    list-style-type none
+  .iconfont
+    font-size 16px
+    color #47cfb9
+    padding-right 5px
 </style>

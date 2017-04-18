@@ -19,14 +19,26 @@
     <div class="hide" v-show="detail" @click="close"></div>
     <div class="hide-off hide-off-flowers" v-show="detail">
       <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
+        <div class="weui-cell" v-if="showdetail">
             <div class="weui-cell__hd"><label class="weui-label">名称</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" type="text" v-model="name">
             </div>
         </div>
+        <div class="weui-cell" v-else>
+            <div class="weui-cell__hd"><label class="weui-label">移动至</label></div>
+            <div class="weui-cell__bd">
+                <select class="weui-input" v-model="folderId">
+                  <option value="-1" disabled>请选择文件夹</option>
+                  <option v-for="i in folder" :value="i.id">{{i.title}}</option>
+                </select>
+            </div>
+        </div>
       </div>
-      <button class="weui-btn register weui-btn_primary" @click="updateMark">修改</button>
+      <button v-if="showdetail" class="weui-btn register weui-btn_primary" @click="updateMark">确认修改</button>
+      <button v-else class="weui-btn register weui-btn_primary" @click="showdetail = true">修改</button>
+       <button v-if="showdetail" class="weui-btn register weui-btn_primary" @click="showdetail = false">移动</button>
+       <button v-else class="weui-btn register weui-btn_primary" @click="moveMark">确认移动</button>
       <a class="weui-btn weui-btn_plain-primary wran" @click="deleteMark">删除</a>
     </div>
   </div>
@@ -51,6 +63,35 @@ export default {
       queryMessage:'',
       detail:false,
       name:'',
+      parentId:'',
+      folderId:'-1',
+      showdetail:true,
+      folder:[
+      // {
+      //           children:[{
+      //             url:'muke',
+      //             title:'慕课网'
+      //           },{
+      //             url:'w3c',
+      //             title:'W3C'
+      //           }],
+      //           id:'0',
+      //           title:'资料'
+      //         },
+
+      //         {
+      //           children:[{
+      //             url:'muke',
+      //             title:'慕课网'
+      //           },{
+      //             url:'w3c',
+      //             title:'W3C'
+      //           }],
+      //           id:'1',
+      //           title:'常用'
+      //         }
+
+              ],
       //模拟书签数据
       information:[
         {
@@ -58,21 +99,18 @@ export default {
             {children:[
               {
                 children:[{
-                  children:[],
                   url:'muke',
                   title:'慕课网'
                 },{
-                  children:[],
                   url:'w3c',
                   title:'W3C'
                 }],
                 title:'资料'
               },
-              {children:[],
+              {
               url:'baidu',
               title:'百度'
               },{
-              children:[],
               url:'fanyi',
               title:'翻译'
               }
@@ -80,11 +118,10 @@ export default {
             title:'常用'
             },{
             children:[
-              {children:[],
+              {
               url:'vue',
               title:'vue'
               },{
-              children:[],
               url:'meui',
               title:'meui'
               }
@@ -162,8 +199,36 @@ export default {
           alert(e.message)
         }
       }
-
     },
+    moveMark(){
+      const vm = this
+      vm.showdetail = false
+      let id = vm.currentMark.id
+      let parentId = vm.folderId
+      if(parentId == -1){
+        alert('请选择文件夹')
+      }
+      try{
+        chrome.bookmarks.move(id,{parentId:parentId},function(){
+          vm.getBookMarks()
+          vm.close()
+        })
+      }catch(e){
+        alert(e.message)
+      }
+    },
+    getFolder(items){
+      const vm = this
+      for (var i = 0; i < items.length; i++) {
+        if('children' in items[i]){
+          vm.folder.push( items[i] )
+          if(!isEmpty(items[i].children)){
+            vm.getFolder(items[i])
+          }
+        }
+      }
+    },
+
   },
   watch:{
     'currentMark':function(val){
@@ -171,6 +236,9 @@ export default {
         this.detail = true
         this.name = val.title
       }
+    },
+    'Items':function(val){
+      this.getFolder(val)
     }
   }
 }
@@ -242,7 +310,7 @@ export default {
     right 0
     top 24%
     width 50%
-    height 300px
+    height 360px
     z-index 1000
     margin 0 auto
     position fixed

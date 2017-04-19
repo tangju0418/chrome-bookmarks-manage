@@ -214,7 +214,7 @@ export default {
       }
     },
     'Items':function(val){
-      this.getFolder(val)
+      this.getFolder(val[0])
     }
   }
 }

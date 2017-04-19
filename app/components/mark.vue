@@ -2,7 +2,8 @@
   <div>
     <ul v-for="item in Items">
       <div v-if="isEmpty(item.url)">
-        <p class="underline" @click="update(item)">{{item.title}}</p>
+        <p v-if="!isEmpty(item.title)"　class="underline" @click="update(item)">{{item.title}}</p>
+        <span v-else></span>
         <bookmark v-if="!isEmpty(item.children)" :Items="item.children" :queryMessage="isMatched(item.title) ? '' : queryMessage"></bookmark>
       </div>
       <li v-if="!isEmpty(item.url) && isMatched(item.title)" @click="update(item)">

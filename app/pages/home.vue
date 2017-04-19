@@ -63,35 +63,9 @@ export default {
       queryMessage:'',
       detail:false,
       name:'',
-      parentId:'',
       folderId:'-1',
       showdetail:true,
-      folder:[
-      // {
-      //           children:[{
-      //             url:'muke',
-      //             title:'慕课网'
-      //           },{
-      //             url:'w3c',
-      //             title:'W3C'
-      //           }],
-      //           id:'0',
-      //           title:'资料'
-      //         },
-
-      //         {
-      //           children:[{
-      //             url:'muke',
-      //             title:'慕课网'
-      //           },{
-      //             url:'w3c',
-      //             title:'W3C'
-      //           }],
-      //           id:'1',
-      //           title:'常用'
-      //         }
-
-              ],
+      folder:[],
       //模拟书签数据
       information:[
         {
@@ -152,8 +126,8 @@ export default {
     getBookMarks(){
       chrome.bookmarks.getTree(
       function(bookmarkTreeNodes) {
-        console.log('bookmarkTreeNodes',bookmarkTreeNodes[0].children)
-        store.dispatch('setMarkbookItem',bookmarkTreeNodes[0].children)
+        console.log('bookmarkTreeNodes',bookmarkTreeNodes)
+        store.dispatch('setMarkbookItem',bookmarkTreeNodes)
       });
     },
     query(){
@@ -161,6 +135,8 @@ export default {
     },
     close(){
       this.detail = false
+      this.showdetail = true
+      this.folderId = '-1'
       store.dispatch('deletMarkbook')
     },
     updateMark(){
@@ -205,7 +181,7 @@ export default {
       vm.showdetail = false
       let id = vm.currentMark.id
       let parentId = vm.folderId
-      if(parentId == -1){
+      if(parentId == '-1'){
         alert('请选择文件夹')
       }
       try{
@@ -223,7 +199,7 @@ export default {
         if('children' in items[i]){
           vm.folder.push( items[i] )
           if(!isEmpty(items[i].children)){
-            vm.getFolder(items[i])
+            vm.getFolder(items[i].children)
           }
         }
       }

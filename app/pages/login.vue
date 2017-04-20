@@ -19,7 +19,7 @@
               </div>
           </div>
         </div>
-        <button href="javascript:;" class="weui-btn register weui-btn_primary" @click="submit">登陆</button>
+        <button href="javascript:;" class="weui-btn register weui-btn_primary" @click="submit">登录</button>
 
     </div>
     <!-- <loading v-if="load"></loading> -->
@@ -35,10 +35,8 @@ import {  errorMessageHandler, createError } from 'utils'
 
 
 export default {
-  route: {
-    data: function(transition) {
-
-    }
+  beforeRouteEnter(to, from, next){
+    next()
   },
 
   data: function() {

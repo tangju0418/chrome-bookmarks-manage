@@ -8,6 +8,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/popup',
+    component: require('app/pages/popup.vue')
+  },
+  {
     path: '/home',
     component: require('app/pages/home.vue')
   },
@@ -21,7 +25,7 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/home'
+    redirect: '/popup'
   }
 ]
 

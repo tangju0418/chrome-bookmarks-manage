@@ -74,6 +74,26 @@ li[data-v-669f43be] {
   padding-right: 5px;
 }
 
+#page[data-v-7530429c] {
+  width: 80px;
+  background-color: #fff;
+  height: auto;
+  text-align: center;
+}
+#page p[data-v-7530429c] {
+  font-size: 14px;
+  color: #333;
+  line-height: 30px;
+  border-top: 1px solid #b8d950;
+  cursor: pointer;
+}
+#page p[data-v-7530429c]:first-child {
+  border-top: none;
+}
+#page p[data-v-7530429c]:active {
+  background-color: #f3f3f3;
+}
+
 header[data-v-6c0cbf9f] {
   height: 40px;
   background: -webkit-linear-gradient(left top, #47cfb9, #b8d950);

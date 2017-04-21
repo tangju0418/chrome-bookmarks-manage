@@ -71,17 +71,20 @@
 	_vue2.default.use(_vueRouter2.default);
 
 	var routes = [{
-	  path: '/home',
+	  path: '/popup',
 	  component: __webpack_require__(174)
 	}, {
-	  path: '/login',
+	  path: '/home',
 	  component: __webpack_require__(178)
 	}, {
-	  path: '/register',
+	  path: '/login',
 	  component: __webpack_require__(182)
 	}, {
+	  path: '/register',
+	  component: __webpack_require__(186)
+	}, {
 	  path: '*',
-	  redirect: '/home'
+	  redirect: '/popup'
 	}];
 
 	var router = new _vueRouter2.default({
@@ -24595,6 +24598,133 @@
 	  /* template */
 	  __webpack_require__(177),
 	  /* scopeId */
+	  "data-v-7530429c",
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "H:\\chromeExtension\\chrome-bookmarks\\app\\pages\\popup.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] popup.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-7530429c", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-7530429c", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _api = __webpack_require__(69);
+
+	var api = _interopRequireWildcard(_api);
+
+	var _utils = __webpack_require__(70);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	exports.default = {
+	  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+	    next(function (vm) {
+	      var searchItem = window.location.search.substring(1).split('&');
+	      var page = searchItem[0];
+	      if (page == 'page=click') {
+	        next('/home');
+	      }
+	    });
+	  },
+
+	  data: function data() {
+	    return {};
+	  },
+
+	  computed: {},
+	  methods: {
+	    isEmpty: _utils.isEmpty,
+	    toHome: function toHome() {
+	      var url = chrome.extension.getURL('app.html');
+	      var Url = url + '?page=click';
+	      chrome.tabs.create({ url: url });
+	    }
+	  },
+	  mounted: function mounted() {
+	    var page = document.getElementById('page').parentNode;
+	    page.style.position = 'relative';
+	  }
+	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    attrs: {
+	      "id": "page"
+	    }
+	  }, [_c('div', {
+	    staticClass: "mui-content"
+	  }, [_c('p', [_vm._v("合并")]), _vm._v(" "), _c('p', [_vm._v("注销")]), _vm._v(" "), _c('p', {
+	    on: {
+	      "click": _vm.toHome
+	    }
+	  }, [_vm._v("选项")])])])
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-7530429c", module.exports)
+	  }
+	}
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(179)
+
+	var Component = __webpack_require__(7)(
+	  /* script */
+	  __webpack_require__(180),
+	  /* template */
+	  __webpack_require__(181),
+	  /* scopeId */
 	  "data-v-6c0cbf9f",
 	  /* cssModules */
 	  null
@@ -24620,13 +24750,13 @@
 
 
 /***/ },
-/* 175 */
+/* 179 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 176 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24804,7 +24934,7 @@
 	      }
 	    },
 	    'Items': function Items(val) {
-	      this.getFolder(val);
+	      this.getFolder(val[0]);
 	    }
 	  }
 	}; //
@@ -24855,7 +24985,7 @@
 	//
 
 /***/ },
-/* 177 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -25034,18 +25164,18 @@
 	}
 
 /***/ },
-/* 178 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(179)
+	__webpack_require__(183)
 
 	var Component = __webpack_require__(7)(
 	  /* script */
-	  __webpack_require__(180),
+	  __webpack_require__(184),
 	  /* template */
-	  __webpack_require__(181),
+	  __webpack_require__(185),
 	  /* scopeId */
 	  "data-v-33701ad9",
 	  /* cssModules */
@@ -25072,13 +25202,13 @@
 
 
 /***/ },
-/* 179 */
+/* 183 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 180 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25096,9 +25226,10 @@
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	exports.default = {
-	  route: {
-	    data: function data(transition) {}
+	  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+	    next();
 	  },
+
 
 	  data: function data() {
 	    return {
@@ -25174,7 +25305,7 @@
 	//
 
 /***/ },
-/* 181 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -25261,7 +25392,7 @@
 	    on: {
 	      "click": _vm.submit
 	    }
-	  }, [_vm._v("登陆")])])])
+	  }, [_vm._v("登录")])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "weui-cell_hd"
@@ -25284,18 +25415,18 @@
 	}
 
 /***/ },
-/* 182 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	/* styles */
-	__webpack_require__(183)
+	__webpack_require__(187)
 
 	var Component = __webpack_require__(7)(
 	  /* script */
-	  __webpack_require__(184),
+	  __webpack_require__(188),
 	  /* template */
-	  __webpack_require__(185),
+	  __webpack_require__(189),
 	  /* scopeId */
 	  "data-v-bdd5393a",
 	  /* cssModules */
@@ -25322,13 +25453,13 @@
 
 
 /***/ },
-/* 183 */
+/* 187 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 184 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25424,7 +25555,7 @@
 	//
 
 /***/ },
-/* 185 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

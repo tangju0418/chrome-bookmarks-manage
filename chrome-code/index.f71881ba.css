@@ -90,8 +90,11 @@ li[data-v-669f43be] {
 #page p[data-v-7530429c]:first-child {
   border-top: none;
 }
+#page p[data-v-7530429c]:hover {
+  background-color: #bef7ee;
+}
 #page p[data-v-7530429c]:active {
-  background-color: #f3f3f3;
+  background-color: #ccc;
 }
 
 header[data-v-6c0cbf9f] {

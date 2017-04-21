@@ -24667,7 +24667,7 @@
 	    toHome: function toHome() {
 	      var url = chrome.extension.getURL('app.html');
 	      var Url = url + '?page=click';
-	      chrome.tabs.create({ url: url });
+	      chrome.tabs.create({ url: Url });
 	    }
 	  },
 	  mounted: function mounted() {
@@ -24936,6 +24936,10 @@
 	    'Items': function Items(val) {
 	      this.getFolder(val[0]);
 	    }
+	  },
+	  mounted: function mounted() {
+	    var page = document.getElementById('homePage').parentNode;
+	    page.style.position = 'fixed';
 	  }
 	}; //
 	//
@@ -24989,7 +24993,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('header', [_c('div', {
+	  return _c('div', {
+	    attrs: {
+	      "id": "homePage"
+	    }
+	  }, [_c('header', [_c('div', {
 	    staticClass: "search"
 	  }, [_c('i', {
 	    staticClass: "weui-icon-search"

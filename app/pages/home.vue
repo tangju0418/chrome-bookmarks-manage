@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="homePage">
     <header>
       <div class="search">
         <i class="weui-icon-search"></i>
@@ -216,6 +216,10 @@ export default {
     'Items':function(val){
       this.getFolder(val[0])
     }
+  },
+  mounted () {
+    let page = document.getElementById('homePage').parentNode
+    page.style.position = 'fixed'
   }
 }
 

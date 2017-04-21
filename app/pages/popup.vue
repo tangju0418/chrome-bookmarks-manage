@@ -40,7 +40,7 @@ export default {
     toHome(){
       var url = chrome.extension.getURL('app.html')
       let Url = url+'?page=click'
-      chrome.tabs.create({ url: url });
+      chrome.tabs.create({ url: Url });
     }
 
   },
@@ -66,6 +66,8 @@ export default {
     cursor pointer
     &:first-child
       border-top none
+    &:hover
+      background-color #bef7ee
     &:active
-      background-color #f3f3f3
+      background-color #ccc
 </style>

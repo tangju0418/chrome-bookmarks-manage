@@ -11,7 +11,7 @@
       <router-link v-if="hasNoToken" to="/login?page=home" class="login">
         登录
       </router-link>
-      <router-link v-else to="/logout?page=home" class="logout">
+      <router-link v-else to="/logout" class="logout">
         注销
       </router-link>
     </header>
@@ -44,6 +44,12 @@
        <button v-else class="weui-btn register weui-btn_primary" @click="moveMark">确认移动</button>
       <a class="weui-btn weui-btn_plain-primary wran" @click="deleteMark">删除</a>
     </div>
+
+    <div class="hide" v-show="showMessage"></div>
+    <div class="hide-off show-message" v-show="showMessage">
+      <p class="title" v-if="!isEmpty(title)">{{title}}</p>
+      <p class="content">{{message}}</p>
+    </div>
   </div>
 </template>
 
@@ -69,7 +75,10 @@ export default {
       folderId:'-1',
       showdetail:true,
       folder:[],
-      hasNoToken:true,
+      hasNoToken:false,
+      showMessage:false,
+      title:'',
+      message:'',
       //模拟书签数据
       information:[
         {
@@ -143,6 +152,14 @@ export default {
       this.folderId = '-1'
       store.dispatch('deletMarkbook')
     },
+    closeMessage(){
+      const vm = this
+      setTimeout(function(){
+        vm.showMessage = false
+        vm.title = ''
+        vm.message = ''
+      },1500)
+    },
     updateMark(){
       const vm = this
       let id = vm.currentMark.id
@@ -151,9 +168,15 @@ export default {
         chrome.bookmarks.update(id,{title:title},function(){
           vm.getBookMarks()
           vm.close()
+          vm.showMessage = true
+          vm.message = '修改成功'
+          vm.closeMessage()
         })
       }catch(e){
-        alert(e.message)
+        vm.showMessage = true
+        vm.title="修改书签"
+        vm.message = e.message
+        vm.closeMessage()
       }
     },
     deleteMark(){
@@ -164,9 +187,14 @@ export default {
           chrome.bookmarks.remove(id,function(){
             vm.getBookMarks()
             vm.close()
+            vm.showMessage = true
+            vm.message = '删除成功'
+            vm.closeMessage()
           })
         }catch(e){
-          alert(e.message)
+          vm.showMessage = true
+          vm.title="删除书签"
+          vm.message = e.message
         }
 
       }else{
@@ -174,9 +202,14 @@ export default {
           chrome.bookmarks.removeTree(id,function(){
             vm.getBookMarks()
             vm.close()
+            vm.showMessage = true
+            vm.message = '删除成功'
+            vm.closeMessage()
           })
         }catch(e){
-          alert(e.message)
+          vm.showMessage = true
+          vm.title="删除书签"
+          vm.message = e.message
         }
       }
     },
@@ -192,9 +225,14 @@ export default {
         chrome.bookmarks.move(id,{parentId:parentId},function(){
           vm.getBookMarks()
           vm.close()
+          vm.showMessage = true
+          vm.message = '移动成功'
+          vm.closeMessage()
         })
       }catch(e){
-        alert(e.message)
+        vm.showMessage = true
+        vm.title="移动书签"
+        vm.message = e.message
       }
     },
     getFolder(items){
@@ -209,6 +247,7 @@ export default {
       }
     },
 
+
   },
   watch:{
     'currentMark':function(val){
@@ -218,7 +257,7 @@ export default {
       }
     },
     'Items':function(val){
-      this.getFolder(val[0])
+      this.getFolder(val[0].children)
     }
   },
   mounted () {
@@ -317,6 +356,18 @@ export default {
         color #888
     .weui-btn
       width 80%
+  .show-message
+    top 30%
+    width 300px
+    height 300px
+    .title
+      font-size 24px
+      margin-top 40px
+      color #333
+    .content
+      font-size 24px
+      margin-top 80px
+      color #6c8030
   .wran
     border 1px solid #E64340
     color #E64340

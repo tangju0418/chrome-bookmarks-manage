@@ -20,6 +20,10 @@ const routes = [
     component: require('app/pages/login.vue')
   },
   {
+    path: '/logout',
+    component: require('app/pages/logout.vue')
+  },
+  {
     path: '/register',
     component: require('app/pages/register.vue')
   },

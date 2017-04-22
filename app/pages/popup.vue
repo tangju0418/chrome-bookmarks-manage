@@ -2,7 +2,7 @@
   <div id="page">
     <div class="mui-content">
       <p>合并</p>
-      <p>注销</p>
+      <p><router-link to="/logout" style="color:#333">注销</router-link></p>
       <p @click="toHome">选项</p>
     </div>
   </div>

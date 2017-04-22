@@ -5,11 +5,14 @@
         <i class="weui-icon-search"></i>
         <input type="search" class="weui-search-bar__input" placeholder="搜索" v-model="message" @keyup.enter="query">
       </div>
-      <router-link to="/register" class="signup">
+      <router-link v-if="hasNoToken" to="/register" class="signup">
         注册
       </router-link>
-      <router-link to="/login" class="login">
+      <router-link v-if="hasNoToken" to="/login?page=home" class="login">
         登录
+      </router-link>
+      <router-link v-else to="/logout?page=home" class="logout">
+        注销
       </router-link>
     </header>
     <div class="content">
@@ -66,6 +69,7 @@ export default {
       folderId:'-1',
       showdetail:true,
       folder:[],
+      hasNoToken:true,
       //模拟书签数据
       information:[
         {
@@ -231,15 +235,24 @@ export default {
     height 40px
     background -webkit-linear-gradient(left top, #47cfb9, #b8d950)
     background linear-gradient(left top, #47cfb9, #b8d950)
-    .login,.signup
+    .login,.signup,.logout
       padding 8px
       font-size 14px
       float right
     .login
       color blue
+      &:active
+        color #b70a0a
     .signup
       margin-right 30px
       color #333
+      &:active
+        color #b70a0a
+    .logout
+      margin-right 30px
+      color #b70a0a
+      &:active
+        color blue
     .search
       width 400px
       max-width 40%

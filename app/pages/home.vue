@@ -8,7 +8,7 @@
       <router-link v-if="hasNoToken" to="/register" class="signup">
         注册
       </router-link>
-      <router-link v-if="hasNoToken" to="/login?page=home" class="login">
+      <router-link v-if="hasNoToken" to="/login" class="login">
         登录
       </router-link>
       <router-link v-else to="/logout" class="logout">

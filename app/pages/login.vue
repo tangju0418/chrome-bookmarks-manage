@@ -127,10 +127,5 @@ export default {
 
 .weui-cell_primary
   width 80%
-.login
-  width 50%
-  float left
-  display block
-  text-align center
-  box-sizing border-box
+
 </style>

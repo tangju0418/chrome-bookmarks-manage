@@ -80,8 +80,11 @@
 	  path: '/login',
 	  component: __webpack_require__(182)
 	}, {
-	  path: '/register',
+	  path: '/logout',
 	  component: __webpack_require__(186)
+	}, {
+	  path: '/register',
+	  component: __webpack_require__(189)
 	}, {
 	  path: '*',
 	  redirect: '/popup'
@@ -24644,7 +24647,27 @@
 
 	var _utils = __webpack_require__(70);
 
+	var _store = __webpack_require__(11);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
 
 	exports.default = {
 	  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
@@ -24658,7 +24681,9 @@
 	  },
 
 	  data: function data() {
-	    return {};
+	    return {
+	      showMessage: ''
+	    };
 	  },
 
 	  computed: {},
@@ -24668,23 +24693,22 @@
 	      var url = chrome.extension.getURL('app.html');
 	      var Url = url + '?page=click';
 	      chrome.tabs.create({ url: Url });
+	    },
+	    logout: function logout() {
+	      var vm = this;
+	      _store2.default.dispatch('logout');
+	      vm.message = '注销成功';
+	      vm.showMessage = true;
+	      setTimeout(function () {
+	        vm.showMessage = false;
+	      }, 1500);
 	    }
 	  },
 	  mounted: function mounted() {
 	    var page = document.getElementById('page').parentNode;
 	    page.style.position = 'relative';
 	  }
-	}; //
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+	};
 
 /***/ },
 /* 177 */
@@ -24696,12 +24720,34 @@
 	      "id": "page"
 	    }
 	  }, [_c('div', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (!_vm.showMessage),
+	      expression: "!showMessage"
+	    }],
 	    staticClass: "mui-content"
-	  }, [_c('p', [_vm._v("合并")]), _vm._v(" "), _c('p', [_vm._v("注销")]), _vm._v(" "), _c('p', {
+	  }, [_c('p', [_vm._v("合并")]), _vm._v(" "), _c('p', {
+	    on: {
+	      "click": _vm.logout
+	    }
+	  }, [_vm._v("注销")]), _vm._v(" "), _c('p', {
 	    on: {
 	      "click": _vm.toHome
 	    }
-	  }, [_vm._v("选项")])])])
+	  }, [_vm._v("选项")])]), _vm._v(" "), _c('div', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.showMessage),
+	      expression: "showMessage"
+	    }],
+	    staticStyle: {
+	      "padding": "20px",
+	      "color": "#6c8030",
+	      "font-size": "18px"
+	    }
+	  }, [_vm._v(_vm._s(_vm.message))])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -24765,6 +24811,10 @@
 	  value: true
 	});
 
+	var _defineProperty2 = __webpack_require__(151);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
 	var _vue = __webpack_require__(1);
 
 	var _vue2 = _interopRequireDefault(_vue);
@@ -24791,7 +24841,9 @@
 	  },
 
 	  data: function data() {
-	    return {
+	    var _ref;
+
+	    return _ref = {
 	      message: '',
 	      queryMessage: '',
 	      detail: false,
@@ -24799,41 +24851,42 @@
 	      folderId: '-1',
 	      showdetail: true,
 	      folder: [],
-	      //模拟书签数据
-	      information: [{
-	        children: [{ children: [{
-	            children: [{
-	              url: 'muke',
-	              title: '慕课网'
-	            }, {
-	              url: 'w3c',
-	              title: 'W3C'
-	            }],
-	            title: '资料'
-	          }, {
-	            url: 'baidu',
-	            title: '百度'
-	          }, {
-	            url: 'fanyi',
-	            title: '翻译'
-	          }],
-	          title: '常用'
-	        }, {
+	      hasNoToken: false,
+	      showMessage: false,
+	      title: ''
+	    }, (0, _defineProperty3.default)(_ref, 'message', ''), (0, _defineProperty3.default)(_ref, 'information', [{
+	      children: [{ children: [{
 	          children: [{
-	            url: 'vue',
-	            title: 'vue'
+	            url: 'muke',
+	            title: '慕课网'
 	          }, {
-	            url: 'meui',
-	            title: 'meui'
+	            url: 'w3c',
+	            title: 'W3C'
 	          }],
-	          title: '工作'
+	          title: '资料'
+	        }, {
+	          url: 'baidu',
+	          title: '百度'
+	        }, {
+	          url: 'fanyi',
+	          title: '翻译'
 	        }],
-	        title: '书签'
+	        title: '常用'
 	      }, {
-	        children: [],
-	        title: '其它书签'
-	      }]
-	    };
+	        children: [{
+	          url: 'vue',
+	          title: 'vue'
+	        }, {
+	          url: 'meui',
+	          title: 'meui'
+	        }],
+	        title: '工作'
+	      }],
+	      title: '书签'
+	    }, {
+	      children: [],
+	      title: '其它书签'
+	    }]), _ref;
 	  },
 
 	  computed: {
@@ -24861,6 +24914,14 @@
 	      this.folderId = '-1';
 	      _store2.default.dispatch('deletMarkbook');
 	    },
+	    closeMessage: function closeMessage() {
+	      var vm = this;
+	      setTimeout(function () {
+	        vm.showMessage = false;
+	        vm.title = '';
+	        vm.message = '';
+	      }, 1500);
+	    },
 	    updateMark: function updateMark() {
 	      var vm = this;
 	      var id = vm.currentMark.id;
@@ -24869,9 +24930,15 @@
 	        chrome.bookmarks.update(id, { title: title }, function () {
 	          vm.getBookMarks();
 	          vm.close();
+	          vm.showMessage = true;
+	          vm.message = '修改成功';
+	          vm.closeMessage();
 	        });
 	      } catch (e) {
-	        alert(e.message);
+	        vm.showMessage = true;
+	        vm.title = "修改书签";
+	        vm.message = e.message;
+	        vm.closeMessage();
 	      }
 	    },
 	    deleteMark: function deleteMark() {
@@ -24882,18 +24949,28 @@
 	          chrome.bookmarks.remove(id, function () {
 	            vm.getBookMarks();
 	            vm.close();
+	            vm.showMessage = true;
+	            vm.message = '删除成功';
+	            vm.closeMessage();
 	          });
 	        } catch (e) {
-	          alert(e.message);
+	          vm.showMessage = true;
+	          vm.title = "删除书签";
+	          vm.message = e.message;
 	        }
 	      } else {
 	        try {
 	          chrome.bookmarks.removeTree(id, function () {
 	            vm.getBookMarks();
 	            vm.close();
+	            vm.showMessage = true;
+	            vm.message = '删除成功';
+	            vm.closeMessage();
 	          });
 	        } catch (e) {
-	          alert(e.message);
+	          vm.showMessage = true;
+	          vm.title = "删除书签";
+	          vm.message = e.message;
 	        }
 	      }
 	    },
@@ -24909,9 +24986,14 @@
 	        chrome.bookmarks.move(id, { parentId: parentId }, function () {
 	          vm.getBookMarks();
 	          vm.close();
+	          vm.showMessage = true;
+	          vm.message = '移动成功';
+	          vm.closeMessage();
 	        });
 	      } catch (e) {
-	        alert(e.message);
+	        vm.showMessage = true;
+	        vm.title = "移动书签";
+	        vm.message = e.message;
 	      }
 	    },
 	    getFolder: function getFolder(items) {
@@ -24934,7 +25016,7 @@
 	      }
 	    },
 	    'Items': function Items(val) {
-	      this.getFolder(val[0]);
+	      this.getFolder(val[0].children);
 	    }
 	  },
 	  mounted: function mounted() {
@@ -24942,6 +25024,15 @@
 	    page.style.position = 'fixed';
 	  }
 	}; //
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//
 	//
 	//
@@ -25026,17 +25117,22 @@
 	        _vm.message = $event.target.value
 	      }
 	    }
-	  })]), _vm._v(" "), _c('router-link', {
+	  })]), _vm._v(" "), (_vm.hasNoToken) ? _c('router-link', {
 	    staticClass: "signup",
 	    attrs: {
 	      "to": "/register"
 	    }
-	  }, [_vm._v("\n      注册\n    ")]), _vm._v(" "), _c('router-link', {
+	  }, [_vm._v("\n      注册\n    ")]) : _vm._e(), _vm._v(" "), (_vm.hasNoToken) ? _c('router-link', {
 	    staticClass: "login",
 	    attrs: {
 	      "to": "/login"
 	    }
-	  }, [_vm._v("\n      登录\n    ")])], 1), _vm._v(" "), _c('div', {
+	  }, [_vm._v("\n      登录\n    ")]) : _c('router-link', {
+	    staticClass: "logout",
+	    attrs: {
+	      "to": "/logout"
+	    }
+	  }, [_vm._v("\n      注销\n    ")])], 1), _vm._v(" "), _c('div', {
 	    staticClass: "content"
 	  }, [_c('bookmark', {
 	    attrs: {
@@ -25155,7 +25251,27 @@
 	    on: {
 	      "click": _vm.deleteMark
 	    }
-	  }, [_vm._v("删除")])])])
+	  }, [_vm._v("删除")])]), _vm._v(" "), _c('div', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.showMessage),
+	      expression: "showMessage"
+	    }],
+	    staticClass: "hide"
+	  }), _vm._v(" "), _c('div', {
+	    directives: [{
+	      name: "show",
+	      rawName: "v-show",
+	      value: (_vm.showMessage),
+	      expression: "showMessage"
+	    }],
+	    staticClass: "hide-off show-message"
+	  }, [(!_vm.isEmpty(_vm.title)) ? _c('p', {
+	    staticClass: "title"
+	  }, [_vm._v(_vm._s(_vm.title))]) : _vm._e(), _vm._v(" "), _c('p', {
+	    staticClass: "content"
+	  }, [_vm._v(_vm._s(_vm.message))])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "weui-cell__hd"
@@ -25311,6 +25427,11 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
 
 /***/ },
 /* 185 */
@@ -25400,7 +25521,20 @@
 	    on: {
 	      "click": _vm.submit
 	    }
-	  }, [_vm._v("登录")])])])
+	  }, [_vm._v("登录")]), _vm._v(" "), _c('router-link', {
+	    staticClass: "login",
+	    staticStyle: {
+	      "borderRight": "1px solid #47cfb9"
+	    },
+	    attrs: {
+	      "to": "/home"
+	    }
+	  }, [_vm._v("\n        返回首页\n      ")]), _vm._v(" "), _c('router-link', {
+	    staticClass: "login",
+	    attrs: {
+	      "to": "/register"
+	    }
+	  }, [_vm._v("\n        注册\n      ")])], 1)])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "weui-cell_hd"
@@ -25426,15 +25560,98 @@
 /* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var Component = __webpack_require__(7)(
+	  /* script */
+	  __webpack_require__(187),
+	  /* template */
+	  __webpack_require__(188),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "H:\\chromeExtension\\chrome-bookmarks\\app\\pages\\logout.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] logout.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-f0b76e6c", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-f0b76e6c", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _vue = __webpack_require__(1);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _store = __webpack_require__(11);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//
+	//
+	//
+	//
+
+
+	exports.default = {
+	  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+	    _store2.default.dispatch('logout');
+	    next({ path: '/home' });
+	    console.log('logout');
+	  }
+	};
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div')
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-f0b76e6c", module.exports)
+	  }
+	}
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
 	
 	/* styles */
-	__webpack_require__(187)
+	__webpack_require__(190)
 
 	var Component = __webpack_require__(7)(
 	  /* script */
-	  __webpack_require__(188),
+	  __webpack_require__(191),
 	  /* template */
-	  __webpack_require__(189),
+	  __webpack_require__(192),
 	  /* scopeId */
 	  "data-v-bdd5393a",
 	  /* cssModules */
@@ -25461,13 +25678,13 @@
 
 
 /***/ },
-/* 187 */
+/* 190 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 188 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25561,9 +25778,14 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
 
 /***/ },
-/* 189 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -25650,7 +25872,20 @@
 	    on: {
 	      "click": _vm.submit
 	    }
-	  }, [_vm._v("注册")])])])
+	  }, [_vm._v("注册")]), _vm._v(" "), _c('router-link', {
+	    staticClass: "login",
+	    staticStyle: {
+	      "borderRight": "1px solid #47cfb9"
+	    },
+	    attrs: {
+	      "to": "/home"
+	    }
+	  }, [_vm._v("\n        返回首页\n      ")]), _vm._v(" "), _c('router-link', {
+	    staticClass: "login",
+	    attrs: {
+	      "to": "/login"
+	    }
+	  }, [_vm._v("\n        登录\n      ")])], 1)])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "weui-cell_hd"

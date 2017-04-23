@@ -30,8 +30,8 @@
   position: absolute;
 }
 .register {
-  width: 96%;
-  margin: 20px auto;
+  width: 96% !important;
+  margin: 80px auto 20px;
   height: 46px;
   line-height: 46px;
   border: 1px solid #d9d9d9;
@@ -40,6 +40,14 @@
 .register:active {
   border: 1px solid #ccc;
   background-color: #43ab9a;
+}
+.login {
+  width: 50%;
+  float: left;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 18px;
 }
 
 .weui-btn[data-v-669f43be] {
@@ -103,7 +111,8 @@ header[data-v-6c0cbf9f] {
   background: linear-gradient(left top, #47cfb9, #b8d950);
 }
 header .login[data-v-6c0cbf9f],
-header .signup[data-v-6c0cbf9f] {
+header .signup[data-v-6c0cbf9f],
+header .logout[data-v-6c0cbf9f] {
   padding: 8px;
   font-size: 14px;
   float: right;
@@ -111,9 +120,22 @@ header .signup[data-v-6c0cbf9f] {
 header .login[data-v-6c0cbf9f] {
   color: #00f;
 }
+header .login[data-v-6c0cbf9f]:active {
+  color: #b70a0a;
+}
 header .signup[data-v-6c0cbf9f] {
   margin-right: 30px;
   color: #333;
+}
+header .signup[data-v-6c0cbf9f]:active {
+  color: #b70a0a;
+}
+header .logout[data-v-6c0cbf9f] {
+  margin-right: 30px;
+  color: #b70a0a;
+}
+header .logout[data-v-6c0cbf9f]:active {
+  color: #00f;
 }
 header .search[data-v-6c0cbf9f] {
   width: 400px;
@@ -188,6 +210,21 @@ header .search .weui-search-bar__input[data-v-6c0cbf9f] {
 }
 .hide-off .weui-btn[data-v-6c0cbf9f] {
   width: 80%;
+}
+.show-message[data-v-6c0cbf9f] {
+  top: 30%;
+  width: 300px;
+  height: 300px;
+}
+.show-message .title[data-v-6c0cbf9f] {
+  font-size: 24px;
+  margin-top: 40px;
+  color: #333;
+}
+.show-message .content[data-v-6c0cbf9f] {
+  font-size: 24px;
+  margin-top: 80px;
+  color: #6c8030;
 }
 .wran[data-v-6c0cbf9f] {
   border: 1px solid #e64340;

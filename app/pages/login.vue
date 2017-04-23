@@ -20,7 +20,12 @@
           </div>
         </div>
         <button href="javascript:;" class="weui-btn register weui-btn_primary" @click="submit">登录</button>
-
+        <router-link to="/home" class="login" style="borderRight:1px solid #47cfb9">
+          返回首页
+        </router-link>
+        <router-link to="/register" class="login">
+          注册
+        </router-link>
     </div>
     <!-- <loading v-if="load"></loading> -->
   </div>
@@ -122,6 +127,10 @@ export default {
 
 .weui-cell_primary
   width 80%
-
-
+.login
+  width 50%
+  float left
+  display block
+  text-align center
+  box-sizing border-box
 </style>
